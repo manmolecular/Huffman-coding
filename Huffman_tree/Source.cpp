@@ -82,8 +82,10 @@ string get_input()
 
 int main()
 {
-	//string text = get_input();
-	string text = get_data(filename);
+	string text;
+	text = get_input();
+	//text = get_data(filename);
+
 	string abc = get_repeat(text);
 	int *frequencies = new int[abc.size()];
 	get_frequency(text, frequencies, abc);
@@ -108,6 +110,7 @@ int main()
 	cout << endl << "Character: Code-word" << endl;
 	encoding.HuffmanCodes(arr, frequencies, abc.size());
 	encoding.encode_text(text);
+
 	string temp = encoding.get_encode();
 	cout << endl << "Code-string: " << temp;
 	temp = encoding.decode_text(temp);
