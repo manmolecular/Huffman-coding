@@ -83,8 +83,8 @@ string get_input()
 int main()
 {
 	string text;
-	text = get_input();
-	//text = get_data(filename);
+	text = get_input();									//¬вод с клавиатуры
+	//text = get_data(filename);						//¬вод из файла
 
 	string abc = get_repeat(text);
 	int *frequencies = new int[abc.size()];
@@ -113,6 +113,7 @@ int main()
 
 	string temp = encoding.get_encode();
 	cout << endl << "Code-string: " << temp;
+
 	temp = encoding.decode_text(temp);
 	cout << endl << "Decode-string: " << temp << endl;
 	return 0;

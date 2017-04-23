@@ -132,7 +132,7 @@ string huffman_coding::decode_text(string str)
 }
 
 /* Вывод набора кодов Хаффмана в паре с символами */
-void huffman_coding::printCodes(pointer_huffman root, string str)
+void huffman_coding::printCodes(huffman_tree_node* root, string str)
 {
 	if (!root)
 	{
@@ -174,7 +174,7 @@ void huffman_coding::HuffmanCodes(char data[], int freq[], int size)
 		min_heap.pop();
 
 		// Создаем новый узел с частотой, равной сумме двух 
-		// частот узлов
+		// частот узлов c наименьшей частотой
 
 		top = new huffman_tree_node('$', left->freq + right->freq);
 		top->left = left;
