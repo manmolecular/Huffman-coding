@@ -24,13 +24,13 @@ class huffman_coding
 			}
 		};
 		void printCodes(huffman_tree_node* root, string str);						// Печать кодов
-		void HuffmanCodes(char data[], int freq[], int size);						// Кодирование
+		void HuffmanCodes(string data, int freq[], bool flag_ex);			// Кодирование
 		void print_map();															// Вывод мапы для проверки
 		void encode_text(string text);												// Кодирование-замена в самой стринге
 		string get_encode();														// Возврат encode строки
 		void output_in_file();														// Вывод в файл
 		void decode_text_from_map(string text);										// Раскодирование через map (пробное)
-		string decode_text(string str);												// Раскодирование через дерево
+		string decode_text(string str, bool flag_ex);												// Раскодирование через дерево
 };
 
 /* Вывод текста в файл*/
@@ -90,7 +90,7 @@ void huffman_coding::print_map()
 }
 
 /* Раскодирование текста */
-string huffman_coding::decode_text(string str)
+string huffman_coding::decode_text(string str, bool flag_ex)
 {
 	int main_counter = 0;
 	string decode = "";
@@ -126,7 +126,15 @@ string huffman_coding::decode_text(string str)
 			i++;
 			main_counter = i;
 		}
-		i = main_counter;
+		
+		if (flag_ex)
+		{
+			i++;
+		}
+		else
+		{
+			i = main_counter;
+		}
 	}
 	return decode;
 }
@@ -151,13 +159,13 @@ void huffman_coding::printCodes(huffman_tree_node* root, string str)
 // Основная функция которая строит дерево Хаффмана
 // И печатает коды обходя это построенное 
 // Дерево Хаффмана
-void huffman_coding::HuffmanCodes(char data[], int freq[], int size)
+void huffman_coding::HuffmanCodes(string data, int freq[], bool flag_ex)
 {
 	pointer_huffman left, right, top;
 
 	// Создаем узлы с данными и частотой (учитывая compare функцию сравнения)
 	priority_queue<pointer_huffman, vector<huffman_tree_node*>, compare> min_heap;
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < data.size(); ++i)
 	{
 		pointer_huffman temp = new huffman_tree_node(data[i], freq[i]);
 		min_heap.push(temp);		
@@ -184,5 +192,12 @@ void huffman_coding::HuffmanCodes(char data[], int freq[], int size)
 
 	// Выводим на экран код Хаффмана
 	root_main = min_heap.top();
-	printCodes(root_main, "");
+	if (flag_ex)
+	{
+		printCodes(root_main, "0");
+	}
+	else
+	{
+		printCodes(root_main, "");
+	}
 }

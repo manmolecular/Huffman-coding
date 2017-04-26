@@ -1,5 +1,4 @@
 #include "Huffman_tree.h"
-#define alphabet 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
 const string filename = "input.txt";
 const bool debug_mode = true;
 using namespace std;
@@ -80,12 +79,40 @@ string get_input()
 	return text;
 }
 
+void opener()
+{
+	cout << "	" << " _   _          __   __                          " << endl;
+	cout << "	" << "| | | |        / _| / _|                         " << endl;
+	cout << "	" << "| |_| | _   _ | |_ | |_  _ __ ___    __ _  _ __  " << endl;
+	cout << "	" << "|  _  || | | ||  _||  _|| '_ ` _ \\  / _` || '_ \\ " << endl;
+	cout << "	" << "| | | || |_| || |  | |  | | | | | || (_| || | | |" << endl;
+	cout << "	" << "\\_| |_/ \\__,_||_|  |_|  |_| |_| |_| \\__,_||_| |_|" << endl;
+	cout << "	" << "c o d i n g " << endl << endl;
+}
+
 int main()
 {
+	opener();
+	string choose;
+	cout << "input from (0) - keyboard, (1) - file: ";
+	getline(std::cin, choose);
+	cout << endl;
 	string text;
-	text = get_input();									//Ввод с клавиатуры
-	//text = get_data(filename);						//Ввод из файла
+	if (choose[0] == '0')
+	{
+		text = get_input();									//Ввод с клавиатуры
+	}
+	else if (choose[0] == '1')
+	{
+		text = get_data(filename);							//Ввод из файла
+	}
+	else
+	{
+		cout << "incorrect input" << endl;
+		exit(1);
+	}
 
+	/*Получаем массив частот*/
 	string abc = get_repeat(text);
 	int *frequencies = new int[abc.size()];
 	get_frequency(text, frequencies, abc);
@@ -103,18 +130,24 @@ int main()
 		cout << endl;
 	}
 
-	char *arr = new char[abc.size()];
-	strncpy(arr, abc.c_str(), abc.length() + 1);
+	/* Обработка исключения: один символ */
+	bool flag_ex = 0;
+	if (abc.size() < 2)
+	{
+		flag_ex = !flag_ex;
+	}
 
+	/* Кодирование */
 	huffman_coding encoding;
 	cout << endl << "Character: Code-word" << endl;
-	encoding.HuffmanCodes(arr, frequencies, abc.size());
+	encoding.HuffmanCodes(abc, frequencies, flag_ex);
 	encoding.encode_text(text);
 
 	string temp = encoding.get_encode();
 	cout << endl << "Code-string: " << temp;
 
-	temp = encoding.decode_text(temp);
+	/* Раскодирование */
+	temp = encoding.decode_text(temp, flag_ex);
 	cout << endl << "Decode-string: " << temp << endl;
 	return 0;
 }
