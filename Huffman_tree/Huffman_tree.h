@@ -24,13 +24,13 @@ class huffman_coding
 			}
 		};
 		void printCodes(huffman_tree_node* root, string str);						// Печать кодов
-		void HuffmanCodes(string data, int freq[], bool flag_ex);			// Кодирование
+		void HuffmanCodes(string data, int freq[], bool flag_ex);					// Кодирование
 		void print_map();															// Вывод мапы для проверки
 		void encode_text(string text);												// Кодирование-замена в самой стринге
 		string get_encode();														// Возврат encode строки
 		void output_in_file();														// Вывод в файл
 		void decode_text_from_map(string text);										// Раскодирование через map (пробное)
-		string decode_text(string str, bool flag_ex);												// Раскодирование через дерево
+		string decode_text(string str, bool flag_ex);								// Раскодирование через дерево
 };
 
 /* Вывод текста в файл*/

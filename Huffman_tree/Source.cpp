@@ -93,6 +93,8 @@ void opener()
 int main()
 {
 	opener();
+
+	/* Выбор типа ввода */
 	string choose;
 	cout << "input from (0) - keyboard, (1) - file: ";
 	getline(std::cin, choose);
@@ -112,7 +114,7 @@ int main()
 		exit(1);
 	}
 
-	/*Получаем массив частот*/
+	/* Получаем массив частот */
 	string abc = get_repeat(text);
 	int *frequencies = new int[abc.size()];
 	get_frequency(text, frequencies, abc);

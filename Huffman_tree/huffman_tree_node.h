@@ -11,7 +11,7 @@ class huffman_tree_node
 		friend class huffman_coding;
 	public:
 		huffman_tree_node() {};
-		huffman_tree_node(char _data, unsigned _freq);		// Создание узла
+		huffman_tree_node(char _data, unsigned _freq);			// Создание узла
 };
 
 typedef huffman_tree_node *pointer_huffman;
