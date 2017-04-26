@@ -7,6 +7,7 @@
 
 ![alt tag](https://raw.githubusercontent.com/manmolecular/Huffman-coding/master/interface-screenshot.PNG)
 ![alt tag](https://raw.githubusercontent.com/manmolecular/Huffman-coding/master/interface_screenshot_1.PNG)
+![alt tag](https://raw.githubusercontent.com/manmolecular/Huffman-coding/master/interface_screenshot_2.PNG)
 
 ### Общий принцип (алгоритм) работы:
 #### Кодирование:
