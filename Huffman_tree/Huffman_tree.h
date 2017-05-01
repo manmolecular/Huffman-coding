@@ -5,7 +5,6 @@
 #include <fstream>
 #include <queue>
 #include <map>
-#define filename_output "output_code.txt"
 using namespace std;
 
 class huffman_coding
@@ -28,19 +27,29 @@ class huffman_coding
 		void print_map();															// Вывод мапы для проверки
 		void encode_text(string text);												// Кодирование-замена в самой стринге
 		string get_encode();														// Возврат encode строки
-		void output_in_file();														// Вывод в файл
+		void output_file(string filename, bool flag);								// Вывод в файл
 		void decode_text_from_map(string text);										// Раскодирование через map (пробное)
 		string decode_text(string str, bool flag_ex);								// Раскодирование через дерево
 };
 
 /* Вывод текста в файл*/
-void huffman_coding::output_in_file()
+void huffman_coding::output_file(string filename, bool flag)
 {
 	fstream file;
-	file.open(filename_output, ios::out);
-	for (int i = 0; i < encode.size(); i++)
+	file.open(filename, ios::out);
+	if (flag)
 	{
-		file << encode[i];
+		for (int i = 0; i < encode.size(); i++)
+		{
+			file << encode[i];
+		}
+	}
+	else
+	{
+		for (int i = 0; i < decode.size(); i++)
+		{
+			file << decode[i];
+		}
 	}
 	file.close();
 }
@@ -93,7 +102,7 @@ void huffman_coding::print_map()
 string huffman_coding::decode_text(string str, bool flag_ex)
 {
 	int main_counter = 0;
-	string decode = "";
+	decode = "";
 	for (int i = main_counter; i < str.size();)
 	{
 		pointer_huffman temp = root_main;

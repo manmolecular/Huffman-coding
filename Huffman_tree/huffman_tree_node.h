@@ -5,9 +5,9 @@
 class huffman_tree_node
 {
 	private:
-		char data;												// Символ
-		unsigned freq;											// Частота
-		huffman_tree_node *left, *right;						// Левый и правый потомок
+		char data;									// Символ
+		unsigned freq;								// Частота
+		huffman_tree_node *left, *right;			// Левый и правый потомок
 		friend class huffman_coding;
 	public:
 		huffman_tree_node() {};

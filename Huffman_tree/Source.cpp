@@ -1,19 +1,26 @@
 ﻿#include "Huffman_tree.h"
-const string filename = "input.txt";
-const bool debug_mode = true;
+#define encode_output "output_encode.txt"
+#define decode_output "output_decode.txt"
+#define filename_input "input.txt"
+const bool debug_mode = false;
+const bool show_data = false;
 using namespace std;
 
 /* Помещение текста из файла в string text */
+/* "Кристальное" считывание (сама скромность)*/
 string get_data(string filename)
 {
 	string text;
 	fstream input;
 	input.open(filename, ios::in);
-	getline(input, text);
 	while (!input.eof())
 	{
 		string temp;
 		getline(input, temp);
+		if (!input.eof())
+		{
+			temp += '\n';
+		}
 		text += temp;
 	}
 	input.close();
@@ -106,7 +113,7 @@ int main()
 	}
 	else if (choose[0] == '1')
 	{
-		text = get_data(filename);							//Ввод из файла
+		text = get_data(filename_input);					//Ввод из файла
 	}
 	else
 	{
@@ -119,15 +126,19 @@ int main()
 	int *frequencies = new int[abc.size()];
 	get_frequency(text, frequencies, abc);
 
-	if (debug_mode)
+	if (show_data)
 	{
 		cout << "Text is: " << text << endl;
+	}
+
+	if (debug_mode)
+	{
 		cout << "Alphabet: " << abc << endl;
 		cout << "Size of alphabet: " << abc.size() << endl;
-		cout << "Frequencies: ";
+		cout << "Frequencies: " << endl;
 		for (int i = 0; i < abc.size(); i++)
 		{
-			cout << frequencies[i];
+			cout << abc[i] << " - " << frequencies[i] << endl;
 		}
 		cout << endl;
 	}
@@ -146,10 +157,18 @@ int main()
 	encoding.encode_text(text);
 
 	string temp = encoding.get_encode();
-	cout << endl << "Code-string: " << temp;
+	if (show_data)
+	{
+		cout << endl << "Code-string: " << temp;
+	}
+	encoding.output_file(encode_output, true);
 
 	/* Раскодирование */
 	temp = encoding.decode_text(temp, flag_ex);
-	cout << endl << "Decode-string: " << temp << endl;
+	if (show_data)
+	{
+		cout << endl << "Decode-string: " << temp << endl;
+	}
+	encoding.output_file(decode_output, false);
 	return 0;
 }
