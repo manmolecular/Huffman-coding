@@ -2,8 +2,8 @@
 #define encode_output "output_encode.txt"
 #define decode_output "output_decode.txt"
 #define filename_input "input.txt"
-const bool debug_mode = false;
-const bool show_data = false;
+#define debug_mode false
+#define show_data false
 using namespace std;
 
 /* Помещение текста из файла в string text */
