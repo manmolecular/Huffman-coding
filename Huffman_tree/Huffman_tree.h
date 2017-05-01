@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "huffman_tree_node.h"
 #include <string>
 #include <iostream>
@@ -23,17 +23,17 @@ class huffman_coding
 				return (left->freq > right->freq);
 			}
 		};
-		void printCodes(huffman_tree_node* root, string str);						// Печать кодов
-		void HuffmanCodes(string data, int freq[], bool flag_ex);					// Кодирование
-		void print_map();															// Вывод мапы для проверки
-		void encode_text(string text);												// Кодирование-замена в самой стринге
-		string get_encode();														// Возврат encode строки
-		void output_in_file();														// Вывод в файл
-		void decode_text_from_map(string text);										// Раскодирование через map (пробное)
-		string decode_text(string str, bool flag_ex);								// Раскодирование через дерево
+		void printCodes(huffman_tree_node* root, string str);						// РџРµС‡Р°С‚СЊ РєРѕРґРѕРІ
+		void HuffmanCodes(string data, int freq[], bool flag_ex);					// РљРѕРґРёСЂРѕРІР°РЅРёРµ
+		void print_map();															// Р’С‹РІРѕРґ РјР°РїС‹ РґР»СЏ РїСЂРѕРІРµСЂРєРё
+		void encode_text(string text);												// РљРѕРґРёСЂРѕРІР°РЅРёРµ-Р·Р°РјРµРЅР° РІ СЃР°РјРѕР№ СЃС‚СЂРёРЅРіРµ
+		string get_encode();														// Р’РѕР·РІСЂР°С‚ encode СЃС‚СЂРѕРєРё
+		void output_in_file();														// Р’С‹РІРѕРґ РІ С„Р°Р№Р»
+		void decode_text_from_map(string text);										// Р Р°СЃРєРѕРґРёСЂРѕРІР°РЅРёРµ С‡РµСЂРµР· map (РїСЂРѕР±РЅРѕРµ)
+		string decode_text(string str, bool flag_ex);								// Р Р°СЃРєРѕРґРёСЂРѕРІР°РЅРёРµ С‡РµСЂРµР· РґРµСЂРµРІРѕ
 };
 
-/* Вывод текста в файл*/
+/* Р’С‹РІРѕРґ С‚РµРєСЃС‚Р° РІ С„Р°Р№Р»*/
 void huffman_coding::output_in_file()
 {
 	fstream file;
@@ -45,13 +45,13 @@ void huffman_coding::output_in_file()
 	file.close();
 }
 
-/* Получение кодовой строки */
+/* РџРѕР»СѓС‡РµРЅРёРµ РєРѕРґРѕРІРѕР№ СЃС‚СЂРѕРєРё */
 string huffman_coding::get_encode()
 {
 	return encode;
 }
 
-/* Раскодирование текста */
+/* Р Р°СЃРєРѕРґРёСЂРѕРІР°РЅРёРµ С‚РµРєСЃС‚Р° */
 void huffman_coding::encode_text(string text)
 {
 	for (int i = 0; i < text.size(); i++)
@@ -66,7 +66,7 @@ void huffman_coding::encode_text(string text)
 	}
 }
 
-/* Раскодирование текста через map */
+/* Р Р°СЃРєРѕРґРёСЂРѕРІР°РЅРёРµ С‚РµРєСЃС‚Р° С‡РµСЂРµР· map */
 void huffman_coding::decode_text_from_map(string text)
 {
 	for (auto it = replace_abc.begin(); it != replace_abc.end(); ++it)
@@ -79,17 +79,17 @@ void huffman_coding::decode_text_from_map(string text)
 	}
 }
 
-/* Вывод map на экран */
+/* Р’С‹РІРѕРґ map РЅР° СЌРєСЂР°РЅ */
 void huffman_coding::print_map()
 {
 	cout << "Map contains: " << endl;
-	for (auto it = replace_abc.begin(); it != replace_abc.end(); ++it)			//вывод на экран
+	for (auto it = replace_abc.begin(); it != replace_abc.end(); ++it)			//РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ
 	{
 		cout << it->first << " : " << it->second << endl;
 	}
 }
 
-/* Раскодирование текста */
+/* Р Р°СЃРєРѕРґРёСЂРѕРІР°РЅРёРµ С‚РµРєСЃС‚Р° */
 string huffman_coding::decode_text(string str, bool flag_ex)
 {
 	int main_counter = 0;
@@ -139,7 +139,7 @@ string huffman_coding::decode_text(string str, bool flag_ex)
 	return decode;
 }
 
-/* Вывод набора кодов Хаффмана в паре с символами */
+/* Р’С‹РІРѕРґ РЅР°Р±РѕСЂР° РєРѕРґРѕРІ РҐР°С„С„РјР°РЅР° РІ РїР°СЂРµ СЃ СЃРёРјРІРѕР»Р°РјРё */
 void huffman_coding::printCodes(huffman_tree_node* root, string str)
 {
 	if (!root)
@@ -156,14 +156,14 @@ void huffman_coding::printCodes(huffman_tree_node* root, string str)
 	printCodes(root->right, str + "1");
 }
 
-// Основная функция которая строит дерево Хаффмана
-// И печатает коды обходя это построенное 
-// Дерево Хаффмана
+// РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ РєРѕС‚РѕСЂР°СЏ СЃС‚СЂРѕРёС‚ РґРµСЂРµРІРѕ РҐР°С„С„РјР°РЅР°
+// Р РїРµС‡Р°С‚Р°РµС‚ РєРѕРґС‹ РѕР±С…РѕРґСЏ СЌС‚Рѕ РїРѕСЃС‚СЂРѕРµРЅРЅРѕРµ 
+// Р”РµСЂРµРІРѕ РҐР°С„С„РјР°РЅР°
 void huffman_coding::HuffmanCodes(string data, int freq[], bool flag_ex)
 {
 	pointer_huffman left, right, top;
 
-	// Создаем узлы с данными и частотой (учитывая compare функцию сравнения)
+	// РЎРѕР·РґР°РµРј СѓР·Р»С‹ СЃ РґР°РЅРЅС‹РјРё Рё С‡Р°СЃС‚РѕС‚РѕР№ (СѓС‡РёС‚С‹РІР°СЏ compare С„СѓРЅРєС†РёСЋ СЃСЂР°РІРЅРµРЅРёСЏ)
 	priority_queue<pointer_huffman, vector<huffman_tree_node*>, compare> min_heap;
 	for (int i = 0; i < data.size(); ++i)
 	{
@@ -171,18 +171,18 @@ void huffman_coding::HuffmanCodes(string data, int freq[], bool flag_ex)
 		min_heap.push(temp);		
 	}
 
-	// Пока размер очереди не дойдёт до единицы
+	// РџРѕРєР° СЂР°Р·РјРµСЂ РѕС‡РµСЂРµРґРё РЅРµ РґРѕР№РґС‘С‚ РґРѕ РµРґРёРЅРёС†С‹
 	while (min_heap.size() != 1)
 	{
-		// Достаем два минимальных по частоте элемента из дерева
+		// Р”РѕСЃС‚Р°РµРј РґРІР° РјРёРЅРёРјР°Р»СЊРЅС‹С… РїРѕ С‡Р°СЃС‚РѕС‚Рµ СЌР»РµРјРµРЅС‚Р° РёР· РґРµСЂРµРІР°
 		left = min_heap.top();
 		min_heap.pop();
 
 		right = min_heap.top();
 		min_heap.pop();
 
-		// Создаем новый узел с частотой, равной сумме двух 
-		// частот узлов c наименьшей частотой
+		// РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ СѓР·РµР» СЃ С‡Р°СЃС‚РѕС‚РѕР№, СЂР°РІРЅРѕР№ СЃСѓРјРјРµ РґРІСѓС… 
+		// С‡Р°СЃС‚РѕС‚ СѓР·Р»РѕРІ c РЅР°РёРјРµРЅСЊС€РµР№ С‡Р°СЃС‚РѕС‚РѕР№
 
 		top = new huffman_tree_node('$', left->freq + right->freq);
 		top->left = left;
@@ -190,7 +190,7 @@ void huffman_coding::HuffmanCodes(string data, int freq[], bool flag_ex)
 		min_heap.push(top);
 	}
 
-	// Выводим на экран код Хаффмана
+	// Р’С‹РІРѕРґРёРј РЅР° СЌРєСЂР°РЅ РєРѕРґ РҐР°С„С„РјР°РЅР°
 	root_main = min_heap.top();
 	if (flag_ex)
 	{

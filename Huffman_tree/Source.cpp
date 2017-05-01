@@ -1,9 +1,9 @@
-#include "Huffman_tree.h"
+п»ї#include "Huffman_tree.h"
 const string filename = "input.txt";
 const bool debug_mode = true;
 using namespace std;
 
-/* Помещение текста из файла в string text */
+/* РџРѕРјРµС‰РµРЅРёРµ С‚РµРєСЃС‚Р° РёР· С„Р°Р№Р»Р° РІ string text */
 string get_data(string filename)
 {
 	string text;
@@ -20,7 +20,7 @@ string get_data(string filename)
 	return text;
 }
 
-/* Создание алфавита */
+/* РЎРѕР·РґР°РЅРёРµ Р°Р»С„Р°РІРёС‚Р° */
 string get_repeat(string text)
 {
 	string abc;
@@ -31,17 +31,17 @@ string get_repeat(string text)
 		exit_flag = 0;
 		for (int j = 0; j < abc.size(); j++)
 		{
-			if (abc[j] == text[i])						//Если в нашем алфавите уже есть такая буква
+			if (abc[j] == text[i])						//Р•СЃР»Рё РІ РЅР°С€РµРј Р°Р»С„Р°РІРёС‚Рµ СѓР¶Рµ РµСЃС‚СЊ С‚Р°РєР°СЏ Р±СѓРєРІР°
 			{
-				exit_flag = 1;							//Выходим, если нашли такую букву
+				exit_flag = 1;							//Р’С‹С…РѕРґРёРј, РµСЃР»Рё РЅР°С€Р»Рё С‚Р°РєСѓСЋ Р±СѓРєРІСѓ
 				break;
 			}
 		}
-		if (exit_flag == 1)								//Если мы находили букву ранее
+		if (exit_flag == 1)								//Р•СЃР»Рё РјС‹ РЅР°С…РѕРґРёР»Рё Р±СѓРєРІСѓ СЂР°РЅРµРµ
 		{
-			continue;									//Переходим на следующую итерацию для след. буквы
+			continue;									//РџРµСЂРµС…РѕРґРёРј РЅР° СЃР»РµРґСѓСЋС‰СѓСЋ РёС‚РµСЂР°С†РёСЋ РґР»СЏ СЃР»РµРґ. Р±СѓРєРІС‹
 		}
-		else											//Если буква найдена не была
+		else											//Р•СЃР»Рё Р±СѓРєРІР° РЅР°Р№РґРµРЅР° РЅРµ Р±С‹Р»Р°
 		{
 			abc.push_back(text[i]);
 			continue;
@@ -50,7 +50,7 @@ string get_repeat(string text)
 	return abc;
 }
 
-/* Получение массива частоты использования символов */
+/* РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° С‡Р°СЃС‚РѕС‚С‹ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃРёРјРІРѕР»РѕРІ */
 void get_frequency(string text, int *frequencies, string abc)
 {
 	for (int i = 0; i < abc.size(); i++)
@@ -69,7 +69,7 @@ void get_frequency(string text, int *frequencies, string abc)
 	}
 }
 
-/* Ввод входого текста с клавиатуры */
+/* Р’РІРѕРґ РІС…РѕРґРѕРіРѕ С‚РµРєСЃС‚Р° СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ */
 string get_input()
 {
 	string text;
@@ -94,7 +94,7 @@ int main()
 {
 	opener();
 
-	/* Выбор типа ввода */
+	/* Р’С‹Р±РѕСЂ С‚РёРїР° РІРІРѕРґР° */
 	string choose;
 	cout << "input from (0) - keyboard, (1) - file: ";
 	getline(std::cin, choose);
@@ -102,11 +102,11 @@ int main()
 	string text;
 	if (choose[0] == '0')
 	{
-		text = get_input();									//Ввод с клавиатуры
+		text = get_input();									//Р’РІРѕРґ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 	}
 	else if (choose[0] == '1')
 	{
-		text = get_data(filename);							//Ввод из файла
+		text = get_data(filename);							//Р’РІРѕРґ РёР· С„Р°Р№Р»Р°
 	}
 	else
 	{
@@ -114,7 +114,7 @@ int main()
 		exit(1);
 	}
 
-	/* Получаем массив частот */
+	/* РџРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ С‡Р°СЃС‚РѕС‚ */
 	string abc = get_repeat(text);
 	int *frequencies = new int[abc.size()];
 	get_frequency(text, frequencies, abc);
@@ -132,14 +132,14 @@ int main()
 		cout << endl;
 	}
 
-	/* Обработка исключения: один символ */
+	/* РћР±СЂР°Р±РѕС‚РєР° РёСЃРєР»СЋС‡РµРЅРёСЏ: РѕРґРёРЅ СЃРёРјРІРѕР» */
 	bool flag_ex = 0;
 	if (abc.size() < 2)
 	{
 		flag_ex = !flag_ex;
 	}
 
-	/* Кодирование */
+	/* РљРѕРґРёСЂРѕРІР°РЅРёРµ */
 	huffman_coding encoding;
 	cout << endl << "Character: Code-word" << endl;
 	encoding.HuffmanCodes(abc, frequencies, flag_ex);
@@ -148,7 +148,7 @@ int main()
 	string temp = encoding.get_encode();
 	cout << endl << "Code-string: " << temp;
 
-	/* Раскодирование */
+	/* Р Р°СЃРєРѕРґРёСЂРѕРІР°РЅРёРµ */
 	temp = encoding.decode_text(temp, flag_ex);
 	cout << endl << "Decode-string: " << temp << endl;
 	return 0;

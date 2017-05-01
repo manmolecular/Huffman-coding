@@ -1,17 +1,17 @@
-#pragma once
+п»ї#pragma once
 #include "Huffman_tree.h"
 #include <cstddef>
 
 class huffman_tree_node
 {
 	private:
-		char data;												// Символ
-		unsigned freq;											// Частота
-		huffman_tree_node *left, *right;						// Левый и правый потомок
+		char data;												// РЎРёРјРІРѕР»
+		unsigned freq;											// Р§Р°СЃС‚РѕС‚Р°
+		huffman_tree_node *left, *right;						// Р›РµРІС‹Р№ Рё РїСЂР°РІС‹Р№ РїРѕС‚РѕРјРѕРє
 		friend class huffman_coding;
 	public:
 		huffman_tree_node() {};
-		huffman_tree_node(char _data, unsigned _freq);			// Создание узла
+		huffman_tree_node(char _data, unsigned _freq);			// РЎРѕР·РґР°РЅРёРµ СѓР·Р»Р°
 };
 
 typedef huffman_tree_node *pointer_huffman;
