@@ -9,6 +9,11 @@
 ![alt tag](https://raw.githubusercontent.com/manmolecular/Huffman-coding/master/interface_screenshot_1.PNG)
 ![alt tag](https://raw.githubusercontent.com/manmolecular/Huffman-coding/master/interface_screenshot_2.PNG)
 
+Проверка хешей входного и выходного файлов:
+
+![alt tag](https://raw.githubusercontent.com/manmolecular/Huffman-coding/master/hash_screenshot.PNG)
+
+
 ### Общий принцип (алгоритм) работы:
 #### Кодирование:
 1. На вход программы поступает текст - вводится либо с клавиатуры (функция *get_input*), либо из файла (функция *get_data*).
